@@ -3,7 +3,8 @@ DROP TABLE IF EXISTS users, posts;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username text,
-  email_address text
+  email_address text,
+  password text
 );
 
 -- Then the table with the foreign key first.
@@ -19,10 +20,10 @@ CREATE TABLE posts (
 
 TRUNCATE TABLE users, posts RESTART IDENTITY;
 
-INSERT INTO users ("username", "email_address") VALUES
-('Pixie', 'dust@gmail.com'),
-('voyagenow', 'abba@gmail.com'),
-('Taylor', 'taylor@hotmail.com');
+INSERT INTO users ("username", "email_address", "password") VALUES
+('Pixie', 'dust@gmail.com', 'porridge1998'),
+('voyagenow', 'abba@gmail.com', 'Shreddedwheater192'),
+('Taylor', 'taylor@hotmail.com', 'weetabix9');
 
 -- TRUNCATE posts RESTART IDENTITY; 
 

@@ -17,9 +17,33 @@ class UserRepository
     return users
   end 
 
-  def create(user)
-    sql = 'INSERT INTO users (username, email_address) VALUES($1, $2)'
-    result_set = DatabaseConnection.exec_params(sql, [user.username, user.email_address])
-  end 
+  def find(id)
+    sql = 'SELECT id, username, email_address FROM users WHERE id = $1'
+    result_set = DatabaseConnection.exec_params(sql, [id])
+    result_set = result_set[0]
+    user = User.new
+    user.id = result_set["id"]
+    user.username = result_set["username"]
+    user.email_address = result_set["email_address"]
+  
+    return user
+  end
 
+  def find_user(username)
+    sql = 'SELECT id, username, email_address, password FROM users WHERE username = $1'
+    result_set = DatabaseConnection.exec_params(sql, [username])
+    result_set = result_set[0]
+    user = User.new
+    user.id = result_set["id"]
+    user.username = result_set["username"]
+    user.email_address = result_set["email_address"]
+    user.password = result_set["password"]
+    return user
+  end
+
+  def create(user)
+    sql = 'INSERT INTO users (username, email_address, password) VALUES($1, $2, $3)'
+    result_set = DatabaseConnection.exec_params(sql, [user.username, user.email_address, user.password])
+    
+  end 
 end 

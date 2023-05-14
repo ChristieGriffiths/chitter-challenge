@@ -1,4 +1,4 @@
-require 'post'
+require_relative 'post'
 
 class PostRepository
   def all
@@ -19,8 +19,7 @@ class PostRepository
   end 
 
   def create(post)
-    sql = 'INSERT INTO posts (peep) VALUES ($1)'
-    result_set = DatabaseConnection.exec_params(sql, [post.peep])
+    sql = 'INSERT INTO posts (peep, user_id) VALUES ($1, $2)'
+    result_set = DatabaseConnection.exec_params(sql, [post.peep, post.user_id])
   end 
-  
 end

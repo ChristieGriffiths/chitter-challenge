@@ -26,7 +26,7 @@ describe PostRepository do
     post.user_id = "3"
     repo.create(post)
     
-    p posts = repo.all 
+    posts = repo.all 
     expect(posts.length).to eq (4)
     expect(posts.last.peep).to eq ("Lost my ways")
     expect(posts.last.time_of_peep).to include ("2023")

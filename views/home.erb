@@ -1,0 +1,12 @@
+<% @posts.each do |post| %>
+  <%= post.peep %> <br>
+  <%= post.time_of_peep %> <br>
+  <%= @user_repo.find(post.user_id).username %> <br><br> 
+  <% end %>
+
+
+<form method="POST" action="/home">
+  <label> Write a Peep: </label>
+  <input type = "text" name = "peep" />
+  <input type="submit" />
+</form>
